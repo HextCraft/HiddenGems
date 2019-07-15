@@ -1,0 +1,16 @@
+{
+	"replace": false,
+	"values": [
+		"minecraft:ladder",
+		"hidden_gems:spruce_ladder",
+		"hidden_gems:birch_ladder",
+		"hidden_gems:jungle_ladder",
+		"hidden_gems:acacia_ladder",
+		"hidden_gems:dark_oak_ladder",
+		"hidden_gems:bamboo_ladder",
+		"hidden_gems:mangrove_ladder",
+		"hidden_gems:baobab_ladder",
+		"hidden_gems:red_mangrove_ladder",
+		"hidden_gems:wenge_ladder"
+	]
+}

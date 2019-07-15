@@ -1,0 +1,8 @@
+{
+  "parent": "block/stairs",
+  "textures": {
+    "bottom": "hidden_gems:block/bamboo_planks",
+    "top": "hidden_gems:block/bamboo_planks",
+    "side": "hidden_gems:block/bamboo_planks"
+  }
+}

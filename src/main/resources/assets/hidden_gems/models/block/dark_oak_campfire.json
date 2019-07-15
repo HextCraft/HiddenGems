@@ -1,0 +1,7 @@
+{
+  "parent": "hidden_gems:block/campfire",
+  "textures": {
+    "log": "hidden_gems:block/dark_oak_campfire_log",
+    "litlog": "hidden_gems:block/dark_oak_campfire_log_lit"
+  }
+}

@@ -1,0 +1,14 @@
+{
+  "format_version": "1.10",
+  "identifier": "more_food:cherry_pie",
+  "item_group": "food",
+  "rarity": "common",
+  "max_count": 16,
+  "components": {
+    "use_duration": 32,
+    "food": {
+      "nutrition": 8,
+      "saturation_modifier": "good"
+    }
+  }
+}

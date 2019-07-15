@@ -1,0 +1,6 @@
+{
+    "parent": "block/cross",
+    "textures": {
+        "cross": "hidden_gems:block/acan_coral"
+    }
+}

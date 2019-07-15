@@ -1,0 +1,41 @@
+{
+  "identifier": "more_potions:test_potion",
+  "effects": [
+    {
+      "name": "more_potions:testing",
+      "chance": 1.0,
+      "duration": 120,
+      "amplifier": 4
+    },
+    {
+      "name": "minecraft:regeneration",
+      "chance": 1.0,
+      "duration": 10,
+      "amplifier": 6
+    },
+    {
+      "name": "minecraft:absorption",
+      "chance": 1.0,
+      "duration": 120,
+      "amplifier": 6
+    },
+    {
+      "name": "minecraft:resistance",
+      "chance": 1.0,
+      "duration": 300,
+      "amplifier": 5
+    },
+    {
+      "name": "minecraft:health_boost",
+      "chance": 1.0,
+      "duration": 300,
+      "amplifier": 4
+    },
+    {
+      "name": "minecraft:fire_resistance",
+      "chance": 1.0,
+      "duration": 300,
+      "amplifier": 0
+    }
+  ]
+}

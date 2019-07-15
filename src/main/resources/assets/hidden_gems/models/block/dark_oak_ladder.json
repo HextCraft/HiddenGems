@@ -1,0 +1,6 @@
+{
+  "parent": "block/ladder",
+  "textures": {
+    "texture": "hidden_gems:block/dark_oak_ladder"
+  }
+}

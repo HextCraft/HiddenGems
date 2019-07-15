@@ -1,0 +1,43 @@
+{
+  "format_version": "1.10",
+  "identifier": "more_food:enchanted_apple_pie",
+  "components": {
+    "use_duration": 32,
+    "food": {
+      "nutrition": 14,
+      "saturation_modifier": "supernatural",
+      "effects": [
+        {
+          "name": "minecraft:regeneration",
+          "chance": 1.0,
+          "duration": 10,
+          "amplifier": 6
+        },
+        {
+          "name": "minecraft:absorption",
+          "chance": 1.0,
+          "duration": 120,
+          "amplifier": 6
+        },
+        {
+          "name": "minecraft:resistance",
+          "chance": 1.0,
+          "duration": 300,
+          "amplifier": 5
+        },
+        {
+          "name": "minecraft:health_boost",
+          "chance": 1.0,
+          "duration": 300,
+          "amplifier": 4
+        },
+        {
+          "name": "minecraft:fire_resistance",
+          "chance": 1.0,
+          "duration": 300,
+          "amplifier": 0
+        }
+      ]
+    }
+  }
+}

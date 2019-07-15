@@ -1,0 +1,8 @@
+{
+  "variants": {
+    "facing=north": { "model": "hidden_gems:block/spruce_ladder" },
+    "facing=east":  { "model": "hidden_gems:block/spruce_ladder", "y": 90 },
+    "facing=south": { "model": "hidden_gems:block/spruce_ladder", "y": 180 },
+    "facing=west":  { "model": "hidden_gems:block/spruce_ladder", "y": 270 }
+  }
+}

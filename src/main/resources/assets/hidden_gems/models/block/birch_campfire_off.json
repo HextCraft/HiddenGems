@@ -1,0 +1,6 @@
+{
+  "parent": "hidden_gems:block/campfire_off",
+  "textures": {
+    "log": "hidden_gems:block/birch_campfire_log"
+  }
+}

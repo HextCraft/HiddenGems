@@ -1,0 +1,12 @@
+{
+  "variants": {
+    "facing=north,lit=true": { "model": "hidden_gems:block/dark_oak_campfire", "y": 180 },
+    "facing=south,lit=true": { "model": "hidden_gems:block/dark_oak_campfire" },
+    "facing=east,lit=true": { "model": "hidden_gems:block/dark_oak_campfire", "y": 270 },
+    "facing=west,lit=true": { "model": "hidden_gems:block/dark_oak_campfire", "y": 90 },
+    "facing=north,lit=false": { "model": "hidden_gems:block/dark_oak_campfire_off", "y": 180 },
+    "facing=south,lit=false": { "model": "hidden_gems:block/dark_oak_campfire_off" },
+    "facing=east,lit=false": { "model": "hidden_gems:block/dark_oak_campfire_off", "y": 270 },
+    "facing=west,lit=false": { "model": "hidden_gems:block/dark_oak_campfire_off", "y": 90 }
+  }
+}

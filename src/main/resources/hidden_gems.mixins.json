@@ -1,0 +1,14 @@
+{
+  "required": true,
+  "package": "team.abnormals.hidden_gems.mixin",
+  "compatibilityLevel": "JAVA_8",
+  "mixins": [
+    "blocks.StructureBlockBlockEntityMixin"
+  ],
+  "client": [
+    "client.screen.TitleScreenMixin"
+  ],
+  "injectors": {
+    "defaultRequire": 1
+  }
+}

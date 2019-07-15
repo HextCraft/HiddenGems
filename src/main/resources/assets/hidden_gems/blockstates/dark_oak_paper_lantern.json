@@ -1,0 +1,16 @@
+{
+  "variants": {
+    "axis=y": {
+      "model": "hidden_gems:block/dark_oak_paper_lantern"
+    },
+    "axis=z": {
+      "x": 90,
+      "model": "hidden_gems:block/dark_oak_paper_lantern"
+    },
+    "axis=x": {
+      "x": 90,
+      "y": 90,
+      "model": "hidden_gems:block/dark_oak_paper_lantern"
+    }
+  }
+}

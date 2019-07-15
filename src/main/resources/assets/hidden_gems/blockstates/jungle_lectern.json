@@ -1,0 +1,8 @@
+{
+    "variants": {
+        "facing=north": { "model": "hidden_gems:block/jungle_lectern" },
+        "facing=south": { "model": "hidden_gems:block/jungle_lectern", "y": 180 },
+        "facing=west":  { "model": "hidden_gems:block/jungle_lectern", "y": 270 },
+        "facing=east":  { "model": "hidden_gems:block/jungle_lectern", "y": 90 }
+    }
+}

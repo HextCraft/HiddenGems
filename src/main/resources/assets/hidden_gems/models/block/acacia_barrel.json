@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "side": "hidden_gems:block/acacia_barrel",
+    "end": "hidden_gems:block/acacia_barrel_top"
+  }
+}

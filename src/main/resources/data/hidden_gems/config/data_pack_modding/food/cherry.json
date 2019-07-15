@@ -1,0 +1,12 @@
+{
+  "format_version": "1.10",
+  "identifier": "more_food:cherry",
+  "item_group": "food",
+  "components": {
+    "use_duration": 16,
+    "food": {
+      "nutrition": 1,
+      "saturation_modifier": "normal"
+    }
+  }
+}

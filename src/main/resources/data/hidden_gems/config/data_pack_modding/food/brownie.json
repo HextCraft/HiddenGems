@@ -1,0 +1,14 @@
+{
+  "format_version": "1.10",
+  "identifier": "more_food:brownie",
+  "item_group": "food",
+  "rarity": "common",
+  "max_count": 16,
+  "components": {
+    "use_duration": 32,
+    "food": {
+      "nutrition": 4,
+      "saturation_modifier": "low"
+    }
+  }
+}
