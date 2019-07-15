@@ -1,41 +1,21 @@
 {
-  "identifier": "more_potions:test_potion",
+  "identifier": "more_potions:ink_shadow",
   "effects": [
     {
-      "name": "more_potions:testing",
-      "chance": 1.0,
-      "duration": 120,
-      "amplifier": 4
-    },
-    {
-      "name": "minecraft:regeneration",
+      "name": "minecraft:blindness",
       "chance": 1.0,
       "duration": 10,
-      "amplifier": 6
+      "amplifier": 6,
+      "effect_type": "harmful",
+      "color": 2039587
     },
     {
-      "name": "minecraft:absorption",
+      "name": "minecraft:slowness",
       "chance": 1.0,
       "duration": 120,
-      "amplifier": 6
-    },
-    {
-      "name": "minecraft:resistance",
-      "chance": 1.0,
-      "duration": 300,
-      "amplifier": 5
-    },
-    {
-      "name": "minecraft:health_boost",
-      "chance": 1.0,
-      "duration": 300,
-      "amplifier": 4
-    },
-    {
-      "name": "minecraft:fire_resistance",
-      "chance": 1.0,
-      "duration": 300,
-      "amplifier": 0
+      "amplifier": 6,
+      "effect_type": "harmful",
+      "color": 5926017
     }
   ]
 }

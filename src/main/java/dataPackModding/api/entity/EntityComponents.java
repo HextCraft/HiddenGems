@@ -20,6 +20,7 @@ public class EntityComponents {
             case "water_creature":
                 return EntityCategory.WATER_CREATURE;
             case "misc":
+            default:
                 return EntityCategory.MISC;
         }
     }

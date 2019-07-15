@@ -1,18 +1,16 @@
 package dataPackModding;
 
 import com.google.gson.*;
+import dataPackModding.api.ToolItem;
 import dataPackModding.api.*;
 import dataPackModding.minecraft.EntityImpl;
-import dataPackModding.minecraft.StatusEffectImpl;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.SimpleResourceReloadListener;
 import net.minecraft.entity.EntityDimensions;
 import net.minecraft.entity.EntityType;
 import net.minecraft.entity.effect.StatusEffectInstance;
-import net.minecraft.item.FoodComponent;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.potion.Potions;
+import net.minecraft.item.*;
 import net.minecraft.resource.ResourceManager;
 import net.minecraft.resource.ResourceType;
 import net.minecraft.util.Identifier;
@@ -26,6 +24,7 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import java.util.function.Function;
@@ -114,15 +113,22 @@ public class DataPackModdingManager implements SimpleResourceReloadListener<Data
                 System.out.println(String.format("Registered a block called %s", block.identifier));
             }
             for(Entity entity : this.entities) {
-                EntityType type = new EntityType<>((EntityType.EntityFactory<net.minecraft.entity.Entity>) EntityImpl::new, entity.components.getCategory(),
+                EntityType<EntityImpl> type = new EntityType<>(EntityImpl::new, entity.components.getCategory(),
                         false, entity.summonable, false, entity.spawnable, EntityDimensions.fixed(entity.components.collision_box.width, entity.components.collision_box.height));
                 Registry.register(Registry.ENTITY_TYPE, entity.identifier, type);
+                if (entity.spawnable) {
+                    Registry.register(Registry.ITEM, new Identifier(entity.identifier.getNamespace(), String.format("%s_spawn_egg", entity.identifier.getPath())),
+                            new SpawnEggItem(type, entity.spawn_egg_color_main, entity.spawn_egg_color_overlay, new Item.Settings().group(ItemGroup.MISC)));
+                }
                 System.out.println(String.format("Registered an entity called %s", entity.identifier));
             }
             for (Potion potion : this.potions) {
-                Registry.register(Registry.POTION, potion.name,
-                        new net.minecraft.potion.Potion(potion.name.toString(), new StatusEffectInstance(new StatusEffectImpl(potion.effects, potion.color), potion.duration, potion.amplifier)));
-                System.out.println(String.format("Registered a potion effect called %s", potion.name));
+                if(potion != null) {
+                    Registry.register(Registry.POTION, Objects.requireNonNull(potion).name,
+                            new net.minecraft.potion.Potion(new StatusEffectInstance(Objects.requireNonNull(potion).getEffectType(), Objects.requireNonNull(potion).getEffects().duration,
+                                    Objects.requireNonNull(potion).getEffects().amplifier)));
+                    System.out.println(String.format("Registered a potion effect called %s", Objects.requireNonNull(potion).name));
+                }
             }
         }
 

@@ -1,6 +1,7 @@
 package dataPackModding.api;
 
 import dataPackModding.api.potion.EffectInstance;
+import dataPackModding.minecraft.StatusEffectImpl;
 import net.minecraft.util.Identifier;
 
 public class Potion {
@@ -14,4 +15,12 @@ public class Potion {
         }
         return null;
     }
+
+    public StatusEffectImpl getEffectType() {
+        for (EffectInstance instance : effects) {
+            return new StatusEffectImpl(instance.getEffectType(), instance.color);
+        }
+        return null;
+    }
+
 }

@@ -14,6 +14,9 @@ public class Entity {
     @SerializedName("is_experimental")
     public boolean experimental;
 
+    public int spawn_egg_color_main;
+    public int spawn_egg_color_overlay;
+
     public EntityComponents components;
 
 }
