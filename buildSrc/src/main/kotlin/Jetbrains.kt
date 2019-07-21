@@ -1,10 +1,10 @@
 object Fabric {
     object Loader {
-        const val version = "0.4.8+build.155"
+        const val version = "0.4.8+build.157"
     }
 
     object API {
-        const val version = "0.4.0+local"
+        const val version = "0.3.0+build.200"
     }
 
     object Loom {
