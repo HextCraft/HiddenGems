@@ -1,5 +1,5 @@
 {
-  "identifier": "more_potions:ink_shadow",
+  "name": "more_potions:ink_shadow",
   "effects": [
     {
       "name": "minecraft:blindness",

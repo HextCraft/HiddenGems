@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "normal": { "model": "hidden_gems:block/rope" }
+  }
+}

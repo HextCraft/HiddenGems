@@ -3,6 +3,7 @@ package dataPackModding;
 import com.google.gson.*;
 import dataPackModding.api.ToolItem;
 import dataPackModding.api.*;
+import dataPackModding.client.ArtificeAssetGeneration;
 import dataPackModding.minecraft.EntityImpl;
 import net.fabricmc.fabric.api.resource.ResourceManagerHelper;
 import net.fabricmc.fabric.api.resource.SimpleResourceReloadListener;
@@ -24,7 +25,6 @@ import java.io.InputStreamReader;
 import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Objects;
 import java.util.concurrent.CompletableFuture;
 import java.util.concurrent.Executor;
 import java.util.function.Function;
@@ -102,15 +102,18 @@ public class DataPackModdingManager implements SimpleResourceReloadListener<Data
                         .rarity(foodItem.getRarity())
                         .food(foodComponent)));
                 System.out.println(String.format("Registered a food called %s", foodItem.identifier));
+                ArtificeAssetGeneration.items.add(foodItem);
             }
             for(ToolItem toolItem : this.toolItems) {
                 if (toolItem.max_count == 0) toolItem.max_count = 64;
                 RegistryUtils.registerItem(new Item(new Item.Settings().group(toolItem.getItemGroup()).rarity(toolItem.getRarity())), toolItem.identifier);
                 System.out.println(String.format("Registered a tool called %s", toolItem.identifier));
+                ArtificeAssetGeneration.items.add(toolItem);
             }
             for(Block block : this.blocks) {
                 RegistryUtils.register(new net.minecraft.block.Block(net.minecraft.block.Block.Settings.of(block.getMaterial())), block.identifier, block.getItemGroup());
                 System.out.println(String.format("Registered a block called %s", block.identifier));
+                ArtificeAssetGeneration.blocks.add(block);
             }
             for(Entity entity : this.entities) {
                 EntityType<EntityImpl> type = new EntityType<>(EntityImpl::new, entity.components.getCategory(),
@@ -121,14 +124,14 @@ public class DataPackModdingManager implements SimpleResourceReloadListener<Data
                             new SpawnEggItem(type, entity.spawn_egg_color_main, entity.spawn_egg_color_overlay, new Item.Settings().group(ItemGroup.MISC)));
                 }
                 System.out.println(String.format("Registered an entity called %s", entity.identifier));
+                ArtificeAssetGeneration.entities.add(entity);
             }
             for (Potion potion : this.potions) {
-                if(potion != null) {
-                    Registry.register(Registry.POTION, Objects.requireNonNull(potion).name,
-                            new net.minecraft.potion.Potion(new StatusEffectInstance(Objects.requireNonNull(potion).getEffectType(), Objects.requireNonNull(potion).getEffects().duration,
-                                    Objects.requireNonNull(potion).getEffects().amplifier)));
-                    System.out.println(String.format("Registered a potion effect called %s", Objects.requireNonNull(potion).name));
-                }
+                if(potion == null) continue;
+                    Registry.register(Registry.POTION, potion.name,
+                            new net.minecraft.potion.Potion(new StatusEffectInstance(potion.getEffectType(), potion.getEffects().duration * 20, potion.getEffects().amplifier)));
+                    System.out.println(String.format("Registered a potion effect called %s", potion.name));
+                ArtificeAssetGeneration.potions.add(potion);
             }
         }
 

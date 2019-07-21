@@ -18,27 +18,41 @@ import javax.annotation.Nullable;
 @Mixin(StructureBlockBlockEntity.class)
 public abstract class StructureBlockBlockEntityMixin extends BlockEntity {
 
+    @Shadow
+    private String author;
+    @Shadow
+    private String metadata;
+    @Shadow
+    private BlockPos offset;
+    @Shadow
+    private BlockPos size;
+    @Shadow
+    private BlockRotation rotation;
+    @Shadow
+    private BlockMirror mirror;
+    @Shadow
+    private StructureBlockMode mode;
+    @Shadow
+    private boolean ignoreEntities;
+    @Shadow
+    private boolean powered;
+    @Shadow
+    private boolean showAir;
+    @Shadow
+    private boolean showBoundingBox;
+    @Shadow
+    private float integrity;
+    @Shadow
+    private long seed;
     public StructureBlockBlockEntityMixin(BlockEntityType<?> blockEntityType_1) {
         super(blockEntityType_1);
     }
 
-    @Shadow public abstract void setStructureName(@Nullable String string_1);
+    @Shadow
+    public abstract void setStructureName(@Nullable String string_1);
 
-    @Shadow private String author;
-    @Shadow private String metadata;
-    @Shadow private BlockPos offset;
-    @Shadow private BlockPos size;
-    @Shadow private BlockRotation rotation;
-    @Shadow private BlockMirror mirror;
-    @Shadow private StructureBlockMode mode;
-    @Shadow private boolean ignoreEntities;
-    @Shadow private boolean powered;
-    @Shadow private boolean showAir;
-    @Shadow private boolean showBoundingBox;
-    @Shadow private float integrity;
-    @Shadow private long seed;
-
-    @Shadow protected abstract void updateBlockMode();
+    @Shadow
+    protected abstract void updateBlockMode();
 
     /**
      * @author OliviaTheVampire

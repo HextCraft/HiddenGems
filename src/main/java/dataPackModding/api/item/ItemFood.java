@@ -41,7 +41,7 @@ public class ItemFood {
         if (snack) builder.snack();
         if (effects != null) {
             for(FoodPotionEffect potionEffect : effects) {
-                builder.statusEffect(new StatusEffectInstance(StatusEffect.byRawId(Registry.STATUS_EFFECT.getRawId(Registry.STATUS_EFFECT.get(potionEffect.name))), potionEffect.duration, potionEffect.amplifier), potionEffect.chance);
+                builder.statusEffect(new StatusEffectInstance(StatusEffect.byRawId(Registry.STATUS_EFFECT.getRawId(Registry.STATUS_EFFECT.get(potionEffect.name))), potionEffect.duration * 20, potionEffect.amplifier), potionEffect.chance);
             }
         } else {
             System.out.println("This is null");

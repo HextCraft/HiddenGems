@@ -45,11 +45,19 @@ import java.util.Optional;
 import java.util.Random;
 
 public class CampfireBlock extends BlockWithEntity implements Waterloggable {
-    protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 7.0D, 16.0D);
     public static final BooleanProperty LIT;
     public static final BooleanProperty SIGNAL_FIRE;
     public static final BooleanProperty WATERLOGGED;
     public static final DirectionProperty FACING;
+    protected static final VoxelShape SHAPE = Block.createCuboidShape(0.0D, 0.0D, 0.0D, 16.0D, 7.0D, 16.0D);
+
+    static {
+        LIT = Properties.LIT;
+        SIGNAL_FIRE = Properties.SIGNAL_FIRE;
+        WATERLOGGED = Properties.WATERLOGGED;
+        FACING = Properties.HORIZONTAL_FACING;
+    }
+
     public WoodType woodType;
 
     public CampfireBlock(WoodType woodType, Settings block$Settings_1) {
@@ -58,11 +66,21 @@ public class CampfireBlock extends BlockWithEntity implements Waterloggable {
         this.setDefaultState(this.stateFactory.getDefaultState().with(LIT, true).with(SIGNAL_FIRE, false).with(WATERLOGGED, false).with(FACING, Direction.NORTH));
     }
 
+    public static void spawnSmokeParticle(World world_1, BlockPos blockPos_1, boolean boolean_1, boolean boolean_2) {
+        Random random_1 = world_1.getRandom();
+        DefaultParticleType defaultParticleType_1 = boolean_1 ? ParticleTypes.CAMPFIRE_SIGNAL_SMOKE : ParticleTypes.CAMPFIRE_COSY_SMOKE;
+        world_1.addImportantParticle(defaultParticleType_1, true, (double) blockPos_1.getX() + 0.5D + random_1.nextDouble() / 3.0D * (double) (random_1.nextBoolean() ? 1 : -1), (double) blockPos_1.getY() + random_1.nextDouble() + random_1.nextDouble(), (double) blockPos_1.getZ() + 0.5D + random_1.nextDouble() / 3.0D * (double) (random_1.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
+        if (boolean_2) {
+            world_1.addParticle(ParticleTypes.SMOKE, (double) blockPos_1.getX() + 0.25D + random_1.nextDouble() / 2.0D * (double) (random_1.nextBoolean() ? 1 : -1), (double) blockPos_1.getY() + 0.4D, (double) blockPos_1.getZ() + 0.25D + random_1.nextDouble() / 2.0D * (double) (random_1.nextBoolean() ? 1 : -1), 0.0D, 0.005D, 0.0D);
+        }
+
+    }
+
     public boolean activate(BlockState blockState_1, World world_1, BlockPos blockPos_1, PlayerEntity playerEntity_1, Hand hand_1, BlockHitResult blockHitResult_1) {
         if (blockState_1.get(LIT)) {
             BlockEntity blockEntity_1 = world_1.getBlockEntity(blockPos_1);
             if (blockEntity_1 instanceof CampfireBlockEntity) {
-                CampfireBlockEntity campfireBlockEntity_1 = (CampfireBlockEntity)blockEntity_1;
+                CampfireBlockEntity campfireBlockEntity_1 = (CampfireBlockEntity) blockEntity_1;
                 ItemStack itemStack_1 = playerEntity_1.getStackInHand(hand_1);
                 Optional<CampfireCookingRecipe> optional_1 = campfireBlockEntity_1.getRecipeFor(itemStack_1);
                 if (optional_1.isPresent()) {
@@ -79,7 +97,7 @@ public class CampfireBlock extends BlockWithEntity implements Waterloggable {
     }
 
     public void onEntityCollision(BlockState blockState_1, World world_1, BlockPos blockPos_1, Entity entity_1) {
-        if (!entity_1.isFireImmune() && blockState_1.get(LIT) && entity_1 instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity)entity_1)) {
+        if (!entity_1.isFireImmune() && blockState_1.get(LIT) && entity_1 instanceof LivingEntity && !EnchantmentHelper.hasFrostWalker((LivingEntity) entity_1)) {
             entity_1.damage(DamageSource.IN_FIRE, 1.0F);
         }
 
@@ -90,7 +108,7 @@ public class CampfireBlock extends BlockWithEntity implements Waterloggable {
         if (blockState_1.getBlock() != blockState_2.getBlock()) {
             BlockEntity blockEntity_1 = world_1.getBlockEntity(blockPos_1);
             if (blockEntity_1 instanceof CampfireBlockEntity) {
-                ItemScatterer.spawn(world_1, blockPos_1, ((CampfireBlockEntity)blockEntity_1).getItemsBeingCooked());
+                ItemScatterer.spawn(world_1, blockPos_1, ((CampfireBlockEntity) blockEntity_1).getItemsBeingCooked());
             }
 
             super.onBlockRemoved(blockState_1, world_1, blockPos_1, blockState_2, boolean_1);
@@ -137,12 +155,12 @@ public class CampfireBlock extends BlockWithEntity implements Waterloggable {
     public void randomDisplayTick(BlockState blockState_1, World world_1, BlockPos blockPos_1, Random random_1) {
         if (blockState_1.get(LIT)) {
             if (random_1.nextInt(10) == 0) {
-                world_1.playSound((float)blockPos_1.getX() + 0.5F, (float)blockPos_1.getY() + 0.5F, (float)blockPos_1.getZ() + 0.5F, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 0.5F + random_1.nextFloat(), random_1.nextFloat() * 0.7F + 0.6F, false);
+                world_1.playSound((float) blockPos_1.getX() + 0.5F, (float) blockPos_1.getY() + 0.5F, (float) blockPos_1.getZ() + 0.5F, SoundEvents.BLOCK_CAMPFIRE_CRACKLE, SoundCategory.BLOCKS, 0.5F + random_1.nextFloat(), random_1.nextFloat() * 0.7F + 0.6F, false);
             }
 
             if (random_1.nextInt(5) == 0) {
-                for(int int_1 = 0; int_1 < random_1.nextInt(1) + 1; ++int_1) {
-                    world_1.addParticle(ParticleTypes.LAVA, (float)blockPos_1.getX() + 0.5F, (float)blockPos_1.getY() + 0.5F, (float)blockPos_1.getZ() + 0.5F, random_1.nextFloat() / 2.0F, 5.0E-5D, random_1.nextFloat() / 2.0F);
+                for (int int_1 = 0; int_1 < random_1.nextInt(1) + 1; ++int_1) {
+                    world_1.addParticle(ParticleTypes.LAVA, (float) blockPos_1.getX() + 0.5F, (float) blockPos_1.getY() + 0.5F, (float) blockPos_1.getZ() + 0.5F, random_1.nextFloat() / 2.0F, 5.0E-5D, random_1.nextFloat() / 2.0F);
                 }
             }
 
@@ -154,7 +172,7 @@ public class CampfireBlock extends BlockWithEntity implements Waterloggable {
             boolean boolean_1 = blockState_1.get(LIT);
             if (boolean_1) {
                 if (iWorld_1.isClient()) {
-                    for(int int_1 = 0; int_1 < 20; ++int_1) {
+                    for (int int_1 = 0; int_1 < 20; ++int_1) {
                         spawnSmokeParticle(iWorld_1.getWorld(), blockPos_1, blockState_1.get(SIGNAL_FIRE), true);
                     }
                 } else {
@@ -163,7 +181,7 @@ public class CampfireBlock extends BlockWithEntity implements Waterloggable {
 
                 BlockEntity blockEntity_1 = iWorld_1.getBlockEntity(blockPos_1);
                 if (blockEntity_1 instanceof CampfireBlockEntity) {
-                    ((CampfireBlockEntity)blockEntity_1).spawnItemsBeingCooked();
+                    ((CampfireBlockEntity) blockEntity_1).spawnItemsBeingCooked();
                 }
             }
 
@@ -177,21 +195,11 @@ public class CampfireBlock extends BlockWithEntity implements Waterloggable {
 
     public void onProjectileHit(World world_1, BlockState blockState_1, BlockHitResult blockHitResult_1, Entity entity_1) {
         if (!world_1.isClient && entity_1 instanceof ProjectileEntity) {
-            ProjectileEntity projectileEntity_1 = (ProjectileEntity)entity_1;
+            ProjectileEntity projectileEntity_1 = (ProjectileEntity) entity_1;
             if (projectileEntity_1.isOnFire() && !blockState_1.get(LIT) && !blockState_1.get(WATERLOGGED)) {
                 BlockPos blockPos_1 = blockHitResult_1.getBlockPos();
                 world_1.setBlockState(blockPos_1, blockState_1.with(Properties.LIT, true), 11);
             }
-        }
-
-    }
-
-    public static void spawnSmokeParticle(World world_1, BlockPos blockPos_1, boolean boolean_1, boolean boolean_2) {
-        Random random_1 = world_1.getRandom();
-        DefaultParticleType defaultParticleType_1 = boolean_1 ? ParticleTypes.CAMPFIRE_SIGNAL_SMOKE : ParticleTypes.CAMPFIRE_COSY_SMOKE;
-        world_1.addImportantParticle(defaultParticleType_1, true, (double)blockPos_1.getX() + 0.5D + random_1.nextDouble() / 3.0D * (double)(random_1.nextBoolean() ? 1 : -1), (double)blockPos_1.getY() + random_1.nextDouble() + random_1.nextDouble(), (double)blockPos_1.getZ() + 0.5D + random_1.nextDouble() / 3.0D * (double)(random_1.nextBoolean() ? 1 : -1), 0.0D, 0.07D, 0.0D);
-        if (boolean_2) {
-            world_1.addParticle(ParticleTypes.SMOKE, (double)blockPos_1.getX() + 0.25D + random_1.nextDouble() / 2.0D * (double)(random_1.nextBoolean() ? 1 : -1), (double)blockPos_1.getY() + 0.4D, (double)blockPos_1.getZ() + 0.25D + random_1.nextDouble() / 2.0D * (double)(random_1.nextBoolean() ? 1 : -1), 0.0D, 0.005D, 0.0D);
         }
 
     }
@@ -218,12 +226,5 @@ public class CampfireBlock extends BlockWithEntity implements Waterloggable {
 
     public boolean canPlaceAtSide(BlockState blockState_1, BlockView blockView_1, BlockPos blockPos_1, BlockPlacementEnvironment blockPlacementEnvironment_1) {
         return false;
-    }
-
-    static {
-        LIT = Properties.LIT;
-        SIGNAL_FIRE = Properties.SIGNAL_FIRE;
-        WATERLOGGED = Properties.WATERLOGGED;
-        FACING = Properties.HORIZONTAL_FACING;
     }
 }

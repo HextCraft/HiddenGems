@@ -1,5 +1,7 @@
 package team.abnormals.hidden_gems.block;
 
+import net.minecraft.block.Block;
+import net.minecraft.block.Blocks;
 import net.minecraft.block.LecternBlock;
 import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.world.BlockView;
@@ -12,8 +14,8 @@ public class BaseLecternBlock extends LecternBlock {
 
     private WoodType woodType;
 
-    public BaseLecternBlock(WoodType woodType, Settings block$Settings_1) {
-        super(block$Settings_1);
+    public BaseLecternBlock(WoodType woodType) {
+        super(Block.Settings.copy(Blocks.LECTERN));
         this.woodType = woodType;
     }
 

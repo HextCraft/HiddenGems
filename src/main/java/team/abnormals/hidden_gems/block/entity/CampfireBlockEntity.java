@@ -64,7 +64,7 @@ public class CampfireBlockEntity extends BlockEntity implements Clearable, Ticka
             if (boolean_1) {
                 this.updateItemsBeingCooked();
             } else {
-                for(int int_1 = 0; int_1 < this.itemsBeingCooked.size(); ++int_1) {
+                for (int int_1 = 0; int_1 < this.itemsBeingCooked.size(); ++int_1) {
                     if (this.cookingTimes[int_1] > 0) {
                         this.cookingTimes[int_1] = MathHelper.clamp(this.cookingTimes[int_1] - 2, 0, this.cookingTotalTimes[int_1]);
                     }
@@ -75,7 +75,7 @@ public class CampfireBlockEntity extends BlockEntity implements Clearable, Ticka
     }
 
     private void updateItemsBeingCooked() {
-        for(int int_1 = 0; int_1 < this.itemsBeingCooked.size(); ++int_1) {
+        for (int int_1 = 0; int_1 < this.itemsBeingCooked.size(); ++int_1) {
             ItemStack itemStack_1 = this.itemsBeingCooked.get(int_1);
             if (!itemStack_1.isEmpty()) {
                 if (this.cookingTimes[int_1] >= this.cookingTotalTimes[int_1]) {
@@ -99,22 +99,22 @@ public class CampfireBlockEntity extends BlockEntity implements Clearable, Ticka
             Random random_1 = world_1.random;
             int int_2;
             if (random_1.nextFloat() < 0.11F) {
-                for(int_2 = 0; int_2 < random_1.nextInt(2) + 2; ++int_2) {
+                for (int_2 = 0; int_2 < random_1.nextInt(2) + 2; ++int_2) {
                     CampfireBlock.spawnSmokeParticle(world_1, blockPos_1, this.getCachedState().get(CampfireBlock.SIGNAL_FIRE), false);
                 }
             }
 
             int_2 = this.getCachedState().get(CampfireBlock.FACING).getHorizontal();
 
-            for(int int_3 = 0; int_3 < this.itemsBeingCooked.size(); ++int_3) {
+            for (int int_3 = 0; int_3 < this.itemsBeingCooked.size(); ++int_3) {
                 if (!this.itemsBeingCooked.get(int_3).isEmpty() && random_1.nextFloat() < 0.2F) {
                     Direction direction_1 = Direction.fromHorizontal(Math.floorMod(int_3 + int_2, 4));
                     float float_1 = 0.3125F;
-                    double double_1 = (double)blockPos_1.getX() + 0.5D - (double)((float)direction_1.getOffsetX() * 0.3125F) + (double)((float)direction_1.rotateYClockwise().getOffsetX() * 0.3125F);
-                    double double_2 = (double)blockPos_1.getY() + 0.5D;
-                    double double_3 = (double)blockPos_1.getZ() + 0.5D - (double)((float)direction_1.getOffsetZ() * 0.3125F) + (double)((float)direction_1.rotateYClockwise().getOffsetZ() * 0.3125F);
+                    double double_1 = (double) blockPos_1.getX() + 0.5D - (double) ((float) direction_1.getOffsetX() * 0.3125F) + (double) ((float) direction_1.rotateYClockwise().getOffsetX() * 0.3125F);
+                    double double_2 = (double) blockPos_1.getY() + 0.5D;
+                    double double_3 = (double) blockPos_1.getZ() + 0.5D - (double) ((float) direction_1.getOffsetZ() * 0.3125F) + (double) ((float) direction_1.rotateYClockwise().getOffsetZ() * 0.3125F);
 
-                    for(int int_4 = 0; int_4 < 4; ++int_4) {
+                    for (int int_4 = 0; int_4 < 4; ++int_4) {
                         world_1.addParticle(ParticleTypes.SMOKE, double_1, double_2, double_3, 0.0D, 5.0E-4D, 0.0D);
                     }
                 }
@@ -171,7 +171,7 @@ public class CampfireBlockEntity extends BlockEntity implements Clearable, Ticka
     }
 
     public boolean addItem(ItemStack itemStack_1, int int_1) {
-        for(int int_2 = 0; int_2 < this.itemsBeingCooked.size(); ++int_2) {
+        for (int int_2 = 0; int_2 < this.itemsBeingCooked.size(); ++int_2) {
             ItemStack itemStack_2 = this.itemsBeingCooked.get(int_2);
             if (itemStack_2.isEmpty()) {
                 this.cookingTotalTimes[int_2] = int_1;

@@ -46,27 +46,22 @@ dependencies {
 	mappings(group = "net.fabricmc", name = "yarn", version = "${Minecraft.version}+${Fabric.Yarn.version}")
 	modCompile(group = "net.fabricmc", name = "fabric-loader", version = Fabric.Loader.version)
 
-	modCompile(group = "net.fabricmc.fabric-api", name = "fabric-api", version = Fabric.API.version)
-	include(group = "net.fabricmc.fabric-api", name = "fabric-api", version = Fabric.API.version)
+	modApi(group = "net.fabricmc.fabric-api", name = "fabric-api", version = Fabric.API.version)
 
-    modCompile(group = "me.shedaniel.cloth", name = "config-2", version = Dependencies.ClothConfig.version)
-    include(group = "me.shedaniel.cloth", name = "config-2", version = Dependencies.ClothConfig.version)
-    modCompile(group = "me.sargunvohra.mcmods", name = "auto-config", version = Dependencies.AutoConfig.version)
-    include(group = "me.sargunvohra.mcmods", name = "auto-config", version = Dependencies.AutoConfig.version)
-	modCompile("com.github.Siphalor:tweed-api:2.2.0-beta.3")
-	include("com.github.Siphalor:tweed-api:2.2.0-beta.3")
+    modApi(group = "me.shedaniel.cloth", name = "config-2", version = Dependencies.ClothConfig.version)
+    modApi(group = "me.sargunvohra.mcmods", name = "auto-config", version = Dependencies.AutoConfig.version)
+	modApi("com.github.Siphalor:tweed-api:2.2.0-beta.3")
 
-	modCompile("team.abnormals:AbnormaLib:0.7.8+1.14.4-pre5")
-	include("team.abnormals:AbnormaLib:0.7.8+1.14.4-pre5")
+	modApi("team.abnormals:AbnormaLib:0.7.9+1.14.4-pre6")
 
 	// For dev env testing
-	modCompile("com.jamieswhiteshirt:developer-mode:1.0.12")
-	modCompile(group = "me.shedaniel", name = "RoughlyEnoughItems", version = Dependencies.REI.version)
-	modCompile("informed-load-fabric:informedload:2.1.0:1.14")
-	modCompile(group = "io.github.prospector.modmenu", name = "ModMenu", version = Dependencies.ModMenu.version)
-	modCompile("leaf-decay:leaf:decay:1.0.3")
-	modCompile("com.github.swordglowsblue:artifice:0.3.3")
-	modCompile("com.sk89q.worldedit:worldedit-fabric-mc1.14.2:7.0.1-SNAPSHOT")
+	modApi("com.jamieswhiteshirt:developer-mode:1.0.12")
+	modApi(group = "me.shedaniel", name = "RoughlyEnoughItems", version = Dependencies.REI.version)
+	modApi("informed-load-fabric:informedload:2.1.0:1.14")
+	modApi(group = "io.github.prospector.modmenu", name = "ModMenu", version = Dependencies.ModMenu.version)
+	modApi("leaf-decay:leaf:decay:1.0.3")
+	modApi("com.github.swordglowsblue:artifice:0.3.3")
+	modApi("com.sk89q.worldedit:worldedit-fabric-mc1.14.2:7.0.1-SNAPSHOT")
 
 	compile(group="com.google.code.findbugs", name="jsr305", version="3.0.2")
 }

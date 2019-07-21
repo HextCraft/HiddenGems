@@ -27,7 +27,7 @@ public class LecternBlockEntityRenderer extends BlockEntityRenderer<LecternBlock
         BlockState blockState_1 = lecternBlockEntity_1.getCachedState();
         if (blockState_1.get(BaseLecternBlock.HAS_BOOK)) {
             GlStateManager.pushMatrix();
-            GlStateManager.translatef((float)double_1 + 0.5F, (float)double_2 + 1.0F + 0.0625F, (float)double_3 + 0.5F);
+            GlStateManager.translatef((float) double_1 + 0.5F, (float) double_2 + 1.0F + 0.0625F, (float) double_3 + 0.5F);
             float float_2 = blockState_1.get(BaseLecternBlock.FACING).rotateYClockwise().asRotation();
             GlStateManager.rotatef(-float_2, 0.0F, 1.0F, 0.0F);
             GlStateManager.rotatef(67.5F, 0.0F, 0.0F, 1.0F);

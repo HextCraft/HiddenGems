@@ -1,5 +1,6 @@
 package team.abnormals.hidden_gems.init;
 
+import net.minecraft.block.entity.BlockEntity;
 import net.minecraft.block.entity.BlockEntityType;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
@@ -14,15 +15,22 @@ public class HGBlockEntities {
     public static BlockEntityType<LecternBlockEntity>[] LECTERNS = new BlockEntityType[WoodType.VANILLA_WOODS.size()];
 
     static {
-        for(WoodType woodType : WoodType.VANILLA_WOODS) {
-            if(woodType == WoodType.OAK) continue;
+        for (WoodType woodType : WoodType.VANILLA_WOODS) {
+            if (woodType == WoodType.OAK) continue;
             CAMPFIRES[woodType.getIndex()] =
-                    Registry.register(Registry.BLOCK_ENTITY, new Identifier(HiddenGems.MOD_ID, String.format("%s_campfire_be", woodType.asString())),
-                    BlockEntityType.Builder.create(() -> new CampfireBlockEntity(woodType), HGBlocks.CAMPFIRES[woodType.getIndex()]).build(null));
+                    register(String.format("%s_campfire_be", woodType.asString()),
+                            BlockEntityType.Builder.create(() -> new CampfireBlockEntity(woodType), HGBlocks.CAMPFIRES[woodType.getIndex()]));;
             LECTERNS[woodType.getIndex()] =
-                    Registry.register(Registry.BLOCK_ENTITY, new Identifier(HiddenGems.MOD_ID, String.format("%s_lectern_be", woodType.asString())),
-                            BlockEntityType.Builder.create(() -> new LecternBlockEntity(woodType), HGBlocks.LECTERNS[woodType.getIndex()]).build(null));
+                    register(String.format("%s_lectern_be", woodType.asString()),
+                            BlockEntityType.Builder.create(() -> new LecternBlockEntity(woodType), HGBlocks.LECTERNS[woodType.getIndex()]));;
+
         }
+    }
+
+    public static <T extends BlockEntity> BlockEntityType<T> register(String name, BlockEntityType.Builder<T> builder) {
+        BlockEntityType<T> blockEntityType = builder.build(null);
+        Registry.register(Registry.BLOCK_ENTITY, new Identifier(HiddenGems.MOD_ID, name), blockEntityType);
+        return blockEntityType;
     }
 
 }

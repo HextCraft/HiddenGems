@@ -1,6 +1,7 @@
 package dataPackModding.api;
 
 import net.minecraft.item.ItemGroup;
+import net.minecraft.util.Identifier;
 import net.minecraft.util.Rarity;
 
 public class Item {
@@ -8,6 +9,9 @@ public class Item {
     public String rarity = "common";
     public String item_group = "misc";
     public int max_count = 64;
+    public Identifier identifier;
+    public Identifier texture;
+    public Identifier model;
 
     public Rarity getRarity() {
         switch (rarity) {

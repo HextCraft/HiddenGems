@@ -1,0 +1,7 @@
+{
+  "parent": "minecraft:block/cube_column",
+  "textures": {
+    "end": "hidden_gems:block/blossom_planks",
+    "side": "hidden_gems:block/blossom_bookshelf"
+  }
+}

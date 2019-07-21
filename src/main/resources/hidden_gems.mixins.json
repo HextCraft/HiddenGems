@@ -3,10 +3,27 @@
   "package": "team.abnormals.hidden_gems.mixin",
   "compatibilityLevel": "JAVA_8",
   "mixins": [
-    "blocks.StructureBlockBlockEntityMixin"
+    "blocks.StructureBlockBlockEntityMixin",
+    "entity.LivingEntityMixin",
+    "entity.MobEntityMixin",
+    "server.network.ServerPlayNetworkHandlerMixin",
+    "entity.AbstractTraderEntityMixin",
+    "entity.VillagerEntityMixin",
+    "village.TradeFactoryMixin",
+    "world.VillageGeneratorMixin",
+    "world.AddHillsLayerMixin",
+    "entity.ParrotEntityMixin",
+    "entity.HostileEntityMixin"
   ],
   "client": [
-    "client.screen.TitleScreenMixin"
+    "client.SignBlockEntityRendererMixin",
+    "client.network.ClientPlayerEntityMixin",
+    "client.render.entity.feature.CapeFeatureRendererMixin",
+    "client.render.entity.feature.ElytraFeatureRendererMixin",
+    "client.color.item.ItemColorsMixin",
+    "client.VillagerResemblingModelMixin",
+    "client.ParrotEntityRendererMixin",
+    "client.MixinClientPlayNetworkHandler"
   ],
   "injectors": {
     "defaultRequire": 1

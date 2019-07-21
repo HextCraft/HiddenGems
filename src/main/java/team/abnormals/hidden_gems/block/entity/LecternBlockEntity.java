@@ -36,6 +36,9 @@ import javax.annotation.Nullable;
 import java.util.Objects;
 
 public class LecternBlockEntity extends BlockEntity implements Clearable, NameableContainerProvider {
+    private ItemStack book;
+    private int currentPage;
+    private int pageCount;
     private final Inventory inventory = new Inventory() {
         public int getInvSize() {
             return 1;
@@ -115,9 +118,6 @@ public class LecternBlockEntity extends BlockEntity implements Clearable, Nameab
             return 1;
         }
     };
-    private ItemStack book;
-    private int currentPage;
-    private int pageCount;
 
     public LecternBlockEntity(WoodType woodType) {
         super(HGBlockEntities.LECTERNS[woodType.getIndex()]);
@@ -128,13 +128,13 @@ public class LecternBlockEntity extends BlockEntity implements Clearable, Nameab
         return this.book;
     }
 
+    public void setBook(ItemStack itemStack_1) {
+        this.setBook(itemStack_1, null);
+    }
+
     public boolean hasBook() {
         Item item_1 = this.book.getItem();
         return item_1 == Items.WRITABLE_BOOK || item_1 == Items.WRITTEN_BOOK;
-    }
-
-    public void setBook(ItemStack itemStack_1) {
-        this.setBook(itemStack_1, null);
     }
 
     private void onBookRemoved() {
@@ -150,6 +150,10 @@ public class LecternBlockEntity extends BlockEntity implements Clearable, Nameab
         this.markDirty();
     }
 
+    public int getCurrentPage() {
+        return this.currentPage;
+    }
+
     private void setCurrentPage(int int_1) {
         int int_2 = MathHelper.clamp(int_1, 0, this.pageCount - 1);
         if (int_2 != this.currentPage) {
@@ -160,12 +164,8 @@ public class LecternBlockEntity extends BlockEntity implements Clearable, Nameab
 
     }
 
-    public int getCurrentPage() {
-        return this.currentPage;
-    }
-
     public int getComparatorOutput() {
-        float float_1 = this.pageCount > 1 ? (float)this.getCurrentPage() / ((float)this.pageCount - 1.0F) : 1.0F;
+        float float_1 = this.pageCount > 1 ? (float) this.getCurrentPage() / ((float) this.pageCount - 1.0F) : 1.0F;
         return MathHelper.floor(float_1 * 14.0F) + (this.hasBook() ? 1 : 0);
     }
 
@@ -188,8 +188,8 @@ public class LecternBlockEntity extends BlockEntity implements Clearable, Nameab
             text_2 = playerEntity_1.getDisplayName();
         }
 
-        Vec3d vec3d_1 = new Vec3d((double)this.pos.getX() + 0.5D, (double)this.pos.getY() + 0.5D, (double)this.pos.getZ() + 0.5D);
-        return new ServerCommandSource(CommandOutput.DUMMY, vec3d_1, Vec2f.ZERO, (ServerWorld)this.world, 2, string_2, (Text)text_2, this.world.getServer(), playerEntity_1);
+        Vec3d vec3d_1 = new Vec3d((double) this.pos.getX() + 0.5D, (double) this.pos.getY() + 0.5D, (double) this.pos.getZ() + 0.5D);
+        return new ServerCommandSource(CommandOutput.DUMMY, vec3d_1, Vec2f.ZERO, (ServerWorld) this.world, 2, string_2, (Text) text_2, this.world.getServer(), playerEntity_1);
     }
 
     public boolean shouldNotCopyTagFromItem() {
