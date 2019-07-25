@@ -5,11 +5,13 @@ import net.minecraft.block.Block;
 import net.minecraft.block.BlockRenderLayer;
 import net.minecraft.block.BlockState;
 import net.minecraft.block.Material;
+import net.minecraft.entity.Entity;
 import net.minecraft.entity.EntityContext;
 import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.util.math.BlockPos;
 import net.minecraft.util.shape.VoxelShape;
 import net.minecraft.world.BlockView;
+import net.minecraft.world.World;
 
 public class GrateBlock extends Block {
 
@@ -24,14 +26,22 @@ public class GrateBlock extends Block {
         return AABB;
     }
 
-    /*@Nonnull
     @Override
-    @SuppressWarnings("deprecation")
-    public AxisAlignedBB getBoundingBox(IBlockState state, IBlockAccess source, BlockPos pos) {
-        return AABB;
+    public void onEntityCollision(BlockState blockState_1, World world_1, BlockPos blockPos_1, Entity entity_1) {
+        super.onEntityCollision(blockState_1, world_1, blockPos_1, entity_1);
     }
 
     @Override
+    public boolean isSimpleFullBlock(BlockState blockState_1, BlockView blockView_1, BlockPos blockPos_1) {
+        return false;
+    }
+
+    @Override
+    public boolean isOpaque(BlockState blockState_1) {
+        return false;
+    }
+
+    /*@Override
     public void addCollisionBoxToList(BlockState state, World worldIn, BlockPos pos, VoxelShape entityBox, List<VoxelShape> collidingBoxes, Entity entityIn, boolean isActualState) {
         if (entityIn instanceof ItemEntity)
             return;
@@ -45,26 +55,6 @@ public class GrateBlock extends Block {
         return false;
     }
 
-    @Override
-    @SuppressWarnings("deprecation")
-    public boolean isFullCube(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    @SuppressWarnings("deprecation")
-    public boolean isFullBlock(IBlockState state) {
-        return false;
-    }
-
-    @Override
-    @SuppressWarnings("deprecation")
-    public boolean isOpaqueCube(BlockState state) {
-        return false;
-    }
-
-
-
     @Nonnull
     @Override
     @SuppressWarnings("deprecation")
@@ -77,6 +67,5 @@ public class GrateBlock extends Block {
     public BlockRenderLayer getRenderLayer() {
         return BlockRenderLayer.CUTOUT_MIPPED;
     }
-
 
 }

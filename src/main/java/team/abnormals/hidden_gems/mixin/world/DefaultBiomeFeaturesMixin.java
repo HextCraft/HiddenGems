@@ -24,11 +24,18 @@
 
 package team.abnormals.hidden_gems.mixin.world;
 
+import com.google.common.collect.Lists;
+import net.minecraft.block.Blocks;
 import net.minecraft.world.biome.Biome;
 import net.minecraft.world.biome.DefaultBiomeFeatures;
 import net.minecraft.world.gen.GenerationStep;
 import net.minecraft.world.gen.ProbabilityConfig;
 import net.minecraft.world.gen.carver.Carver;
+import net.minecraft.world.gen.decorator.Decorator;
+import net.minecraft.world.gen.decorator.RangeDecoratorConfig;
+import net.minecraft.world.gen.feature.DiskFeatureConfig;
+import net.minecraft.world.gen.feature.Feature;
+import net.minecraft.world.gen.feature.OreFeatureConfig;
 import org.spongepowered.asm.mixin.Mixin;
 import org.spongepowered.asm.mixin.Overwrite;
 import team.abnormals.hidden_gems.init.HGCarvers;
@@ -45,4 +52,15 @@ public class DefaultBiomeFeaturesMixin {
         biome_1.addCarver(GenerationStep.Carver.AIR, Biome.configureCarver(Carver.CANYON, new ProbabilityConfig(0.02F)));
     }
 
+    /**
+     * @author OliviaTheVampire
+     */
+    @Overwrite
+    public static void addMineables(Biome biome_1) {
+        biome_1.addFeature(GenerationStep.Feature.UNDERGROUND_ORES, Biome.configureFeature(Feature.ORE, new OreFeatureConfig(OreFeatureConfig.Target.NATURAL_STONE, Blocks.DIRT.getDefaultState(), 33), Decorator.COUNT_RANGE, new RangeDecoratorConfig(10, 0, 0, 256)));
+        biome_1.addFeature(GenerationStep.Feature.UNDERGROUND_ORES, Biome.configureFeature(Feature.ORE, new OreFeatureConfig(OreFeatureConfig.Target.NATURAL_STONE, Blocks.GRAVEL.getDefaultState(), 33), Decorator.COUNT_RANGE, new RangeDecoratorConfig(8, 0, 0, 256)));
+        biome_1.addFeature(GenerationStep.Feature.UNDERGROUND_ORES, Biome.configureFeature(Feature.DISK, new DiskFeatureConfig(Blocks.GRANITE.getDefaultState(), 7, 2, Lists.newArrayList(Blocks.GRANITE.getDefaultState())), Decorator.COUNT_RANGE, new RangeDecoratorConfig(10, 0, 0, 80)));
+        biome_1.addFeature(GenerationStep.Feature.UNDERGROUND_ORES, Biome.configureFeature(Feature.DISK, new DiskFeatureConfig(Blocks.DIORITE.getDefaultState(), 7, 2, Lists.newArrayList(Blocks.DIORITE.getDefaultState())), Decorator.COUNT_RANGE, new RangeDecoratorConfig(10, 0, 0, 80)));
+        biome_1.addFeature(GenerationStep.Feature.UNDERGROUND_ORES, Biome.configureFeature(Feature.DISK, new DiskFeatureConfig(Blocks.ANDESITE.getDefaultState(), 7, 2, Lists.newArrayList(Blocks.ANDESITE.getDefaultState())), Decorator.COUNT_RANGE, new RangeDecoratorConfig(10, 0, 0, 80)));
+    }
 }

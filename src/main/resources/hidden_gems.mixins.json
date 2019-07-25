@@ -13,7 +13,8 @@
     "world.VillageGeneratorMixin",
     "world.AddHillsLayerMixin",
     "entity.ParrotEntityMixin",
-    "entity.HostileEntityMixin"
+    "entity.HostileEntityMixin",
+    "commands.LocateCommandMixin"
   ],
   "client": [
     "client.SignBlockEntityRendererMixin",

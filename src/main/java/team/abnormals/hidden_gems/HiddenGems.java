@@ -4,14 +4,15 @@ import dataPackModding.DataPackModdingManager;
 import me.sargunvohra.mcmods.autoconfig1.AutoConfig;
 import me.sargunvohra.mcmods.autoconfig1.serializer.GsonConfigSerializer;
 import net.fabricmc.api.ModInitializer;
+import net.fabricmc.fabric.api.registry.CommandRegistry;
 import net.minecraft.util.Identifier;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import team.abnormals.hidden_gems.block.BaseSignBlock;
 import team.abnormals.hidden_gems.block.BaseWallSignBlock;
+import team.abnormals.hidden_gems.command.LocateBiomeCommand;
 import team.abnormals.hidden_gems.config.ExampleConfig;
 import team.abnormals.hidden_gems.init.*;
-import team.abnormals.hidden_gems.world.CoralShelfFeature;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -48,10 +49,11 @@ public class HiddenGems implements ModInitializer {
         }*/
 
 
-        QUEST_DATA_MANAGER.registerReloadListener();
+//        QUEST_DATA_MANAGER.registerReloadListener();
         LOGGER.info(String.format("You are now running %s v%s", NAME, VERSION));
         new HGBlockEntities();
         new HGBlocks();
+        new HGBiomes();
         new HGEntities();
         new HGEnchantments();
         new HGItems();
@@ -59,7 +61,7 @@ public class HiddenGems implements ModInitializer {
         new HGPaintingMotives();
         new PumpkinInit();
         new MelonInit();
-        CoralShelfFeature.addToOceans();
+        CommandRegistry.INSTANCE.register(false, LocateBiomeCommand::register);
     }
 
 }

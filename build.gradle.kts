@@ -39,6 +39,7 @@ repositories {
 	maven("https://maven.abusedmaster.xyz")
 	maven("https://jitpack.io")
 	maven("https://maven.sk89q.com/repo")
+	maven("https://maven.jamieswhiteshirt.com/libs-release/")
 }
 
 dependencies {
@@ -48,20 +49,20 @@ dependencies {
 
 	modApi(group = "net.fabricmc.fabric-api", name = "fabric-api", version = Fabric.API.version)
 
-    modApi(group = "me.shedaniel.cloth", name = "config-2", version = Dependencies.ClothConfig.version)
-    modApi(group = "me.sargunvohra.mcmods", name = "auto-config", version = Dependencies.AutoConfig.version)
-	modApi("com.github.Siphalor:tweed-api:2.2.0-beta.3")
+    modImplementation(group = "me.sargunvohra.mcmods", name = "auto-config", version = Dependencies.AutoConfig.version)
+	modImplementation("com.github.Siphalor:tweed-api:2.2.0-beta.3")
 
-	modApi("team.abnormals:AbnormaLib:0.7.9+1.14.4-pre6")
+	modCompile("team.abnormals:AbnormaLib:0.8.0+1.14.4")
 
 	// For dev env testing
-	modApi("com.jamieswhiteshirt:developer-mode:1.0.12")
-	modApi(group = "me.shedaniel", name = "RoughlyEnoughItems", version = Dependencies.REI.version)
-	modApi("informed-load-fabric:informedload:2.1.0:1.14")
-	modApi(group = "io.github.prospector.modmenu", name = "ModMenu", version = Dependencies.ModMenu.version)
-	modApi("leaf-decay:leaf:decay:1.0.3")
-	modApi("com.github.swordglowsblue:artifice:0.3.3")
-	modApi("com.sk89q.worldedit:worldedit-fabric-mc1.14.2:7.0.1-SNAPSHOT")
+	modImplementation(group = "com.jamieswhiteshirt", name = "developer-mode", version = "1.0.13")
+	modImplementation(group = "me.shedaniel", name = "RoughlyEnoughItems", version = Dependencies.REI.version)
+	modImplementation(group = "io.github.prospector.modmenu", name = "ModMenu", version = Dependencies.ModMenu.version)
+	modImplementation("leaf-decay:leaf:decay:1.0.3")
+	modImplementation("com.github.swordglowsblue:artifice:0.3.3")
+	modImplementation("worldedit:worldedit-fabric-mc1.14.4:7.0.1:rc1")
+	modCompile("com.github.TerraformersMC:Terrestria:1.14-SNAPSHOT")
+	modCompile("com.github.TerraformersMC:Terraform:669113a631")
 
 	compile(group="com.google.code.findbugs", name="jsr305", version="3.0.2")
 }
